@@ -9,4 +9,4 @@ var twoSum = function (nums, target) {
             if (target === nums[i] + nums[j]) return ([i, j]);
         }
     }
-}
+};
