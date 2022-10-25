@@ -10,9 +10,7 @@ var maximumWealth = function (accounts) {
         for (j = 0; j < accounts[i].length; j++) {
             sum += accounts[i][j];
         }
-        if (rich < sum) {
-            rich = sum;
-        }
+        rich = Math.max(rich, sum);
     }
     return rich;
 };
