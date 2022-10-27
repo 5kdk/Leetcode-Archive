@@ -13,7 +13,7 @@ var fizzBuzz = function (n) {
         } else if (i % 3 === 0) {
             result.push("Fizz");
         } else {
-            result.push(String(i));
+            result.push(`${i}`);
         }
     }
     return result;
