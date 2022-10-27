@@ -6,7 +6,7 @@ var numberOfSteps = function (num) {
 
     let cnt = 0;
     while (num) {
-        if (num % 2 !== 0) {
+        if (num % 2) {
             num--;
             cnt++;
         } else {
