@@ -4,20 +4,15 @@
  */
  
 var isHappy = function (n) {
-  const previousSum = new Set();
-
-  while (n !== 1) {
-    let currentSum = 0;
-    while (n > 0) {
-      currentSum += (n % 10) * (n % 10);
-      n = Math.floor(n / 10);
-    }
-    if (!previousSum.has(currentSum)) {
-      previousSum.add(currentSum);
-      n = currentSum;
-    } else {
-      return false;
-    }
+  function getNext(n) {
+    return (n + "").split("").reduce((a, c) => Number(a) + Number(c * c), 0);
   }
-  return true;
+
+  let slow = n;
+  let fast = getNext(n);
+  while (fast != 1 && slow != fast) {
+    slow = getNext(slow);
+    fast = getNext(getNext(fast));
+  }
+  return fast == 1;
 };
