@@ -1,25 +1,22 @@
-const squares = { 0: 0, 1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64, 9: 81 };
-
 /**
  * @param {number} n
  * @return {boolean}
  */
-
 var isHappy = function (n) {
+  const previouslySeenSum = new Set();
 
-  if (n < 1) return false;
-
-  let set = new Set();
-
-  while (!set.has(n)) {
-    set.add(n);
-    let s = n.toString();
-    n = 0;
-    for (let i = 0; i < s.length; ++i) {
-      n += squares[s[i]];
+  while (n !== 1) {
+    let currentSum = 0;
+    while (n > 0) {
+      currentSum += (n % 10) * (n % 10);
+      n = Math.floor(n / 10);
     }
-    if (n == 1) return true;
+    if (!previouslySeenSum.has(currentSum)) {
+      previouslySeenSum.add(currentSum);
+      n = currentSum;
+    } else {
+      return false;
+    }
   }
-
-  return false;
+  return true;
 };
