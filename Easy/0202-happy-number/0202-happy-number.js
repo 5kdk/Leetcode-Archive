@@ -1,18 +1,25 @@
+const squares = { 0: 0, 1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64, 9: 81 };
+
 /**
  * @param {number} n
  * @return {boolean}
  */
- 
+
 var isHappy = function (n) {
-  function getNext(n) {
-    return (n + "").split("").reduce((a, c) => Number(a) + Number(c * c), 0);
+
+  if (n < 1) return false;
+
+  let set = new Set();
+
+  while (!set.has(n)) {
+    set.add(n);
+    let s = n.toString();
+    n = 0;
+    for (let i = 0; i < s.length; ++i) {
+      n += squares[s[i]];
+    }
+    if (n == 1) return true;
   }
 
-  let slow = n;
-  let fast = getNext(n);
-  while (fast != 1 && slow != fast) {
-    slow = getNext(slow);
-    fast = getNext(getNext(fast));
-  }
-  return fast == 1;
+  return false;
 };
